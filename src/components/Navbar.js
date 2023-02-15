@@ -4,10 +4,10 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Navbar = () => {
   return (
-    <nav className="max-w-[1200px] flex flex-row items-center justify-between bg-white  h-[80px] m-auto pr-4 pl-4">
+    <nav className="max-w-[1200px] flex flex-row items-center justify-between bg-white h-[80px] m-auto">
       <div className="flex items-center">
         <Link href={"https://envoyvc.dev"}>
-          <h1 className="ml-2 text-[20px] sm:text-[22px] font-medium text-gray-900 font-Rubik">
+          <h1 className="ml-2 text-[20px] sm:text-[22px] font-medium text-gray-900 hover:text-gray-500  font-Rubik">
             Vedant Chainani
           </h1>
         </Link>

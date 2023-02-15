@@ -1,13 +1,24 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
+
+import { useState } from "react";
 
 import Navbar from "@/components/Navbar";
+import PostCard from "@/components/PostCard";
+import FeaturedPost from "@/components/FeaturedPost";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [checkedTags, setCheckedTags] = useState({});
+  const tags = ["Learn", "Announcements", "Web3", "NFTs"];
+  const handleTagChange = (tag) => {
+    setCheckedTags({
+      ...checkedTags,
+      [tag]: !checkedTags[tag],
+    });
+  };
   return (
     <>
       <Head>
@@ -17,9 +28,62 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="">
-        <div className="border-b border-[#dedede]">
+        <div className="border-b border-[#dedede] mb-28">
           <Navbar />
         </div>
+        <FeaturedPost />
+        <div className="max-w-[1200px] mx-auto px-6 xl:px-0">
+          <div className="font-bold font-Rubik pt-8 sm:pt-4 text-[24px]">
+            Browse the blog
+          </div>
+          <div className="font-light font-Rubik pt-8 sm:pt-4  text-[14px] text-[#999]">
+            Want to learn more? Click on a category below for more from the
+            blog.
+          </div>
+          <div className="flex flex-wrap mt-2 pb-8">
+            {tags.map((tag) => (
+              <label
+                key={tag}
+                className={`text-[#333] font-Rubik text-[14px] p-[10px] mt-[8px] mr-[4px] ml-[4px] leading-[10px] font-medium tracking-[1px] rounded-[6px] min-w-[80px] px-4 text-center border-solid border-[1px] ${
+                  checkedTags[tag]
+                    ? "border-[#254CDD] bg-[#254CDD] text-white"
+                    : "border-[#000] bg-white text-[#254CDD]"
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  className="hidden"
+                  onChange={() => handleTagChange(tag)}
+                  checked={checkedTags[tag]}
+                />
+                {tag}
+              </label>
+            ))}
+          </div>
+        </div>
+        <div className="max-w-[1200px] mx-auto mt-8 grid gap-x-8 gap-y-16 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-6 xl:px-0">
+          <PostCard />
+          <PostCard />
+          <PostCard />
+        </div>
+        <div className="max-w-[1200px] mx-auto flex justify-center my-14 lg:my-28">
+          <button className="bg-white border border-[#254CDD] text-[#254CDD] py-2 px-4 rounded-md hover:scale-105 hover:text-[#173296] hover:border-[#173296]  transition duration-300 ease-in-out flex items-center justify-center">
+            <span className="mr-2">Load More</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 transform rotate-90 transition duration-300 ease-in-out"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M15.707 10.707a1 1 0 01-1.414 0L10 6.414 6.707 9.707a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+        <Footer />
       </main>
     </>
   );
