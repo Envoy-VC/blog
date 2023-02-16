@@ -9,7 +9,7 @@ const FeaturedPost = () => {
     "https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6a31lff34nyeyq3iahf6.png";
   const date = "February 14, 2023";
   return (
-    <div className="max-w-[1200px] min-h-[200px] mx-auto flex flex-row flex-wrap px-[4px] sm:px-[16px] md:px-6 xl:px-0 pb-16 border-solid border-b-2 border-[#DEDEDE] h-auto">
+    <div className="max-w-[1200px] min-h-[200px] mx-auto flex flex-row flex-wrap px-[12px] sm:px-[16px] md:px-6 xl:px-0 pb-16 border-solid border-b-2 border-[#DEDEDE] h-auto">
       <div className="md:h-[400px] justify-center">
         <Image
           src={cover}
@@ -17,7 +17,7 @@ const FeaturedPost = () => {
           width={700}
           height={400}
           quality={100}
-          className="w-[700px] h-[300px] px-[0px] md:px-0 md:w-[700px] md:h-[400px] sm:h-[350px] object-fill relative rounded-md lg:object-none"
+          className="w-[700px] h-[240px] px-[0px] md:px-0 md:w-[700px] md:h-[400px] sm:h-[350px] object-fill relative rounded-md lg:object-none"
         />
       </div>
       <div className="flex flex-col justify-between pl-8 flex-wrap">
