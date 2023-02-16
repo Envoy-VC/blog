@@ -7,6 +7,9 @@ import menu from "../assets/menu.svg";
 
 const Navbar = () => {
   const [toggleDrawer, setToggleDrawer] = useState(false);
+  const handleMenuToggle = () => {
+    setToggleDrawer(!toggleDrawer);
+  };
   return (
     <nav className="max-w-[1200px] flex flex-row items-center justify-between bg-white h-[80px] m-auto">
       <div className="flex items-center">
@@ -22,33 +25,6 @@ const Navbar = () => {
           </h1>
         </Link>
       </div>
-      {/* Small Screen Navigation */}
-      <div className="sm:hidden flex items-center flex-row">
-        <Image
-          src={menu}
-          alt="menu"
-          className="w-[34px] h-[34px] object-contain cursor-pointer ml-auto order-2 mr-4"
-          onClick={() => setToggleDrawer((prev) => !prev)}
-        />
-        <div
-          className={`relative top-[100px] right-0 left-0 bg-white z-10 shadow-secondary py-4 ${
-            !toggleDrawer
-              ? "-translate-y-[100vh] -translate-x-[75%]"
-              : "translate-y-0 -translate-x-[75%]"
-          } transition-all duration-500`}
-        >
-          <div className="flex mx-4 justify-center">
-            <ConnectButton
-              chainStatus="none"
-              showBalance={false}
-              accountStatus={{
-                smallScreen: "avatar",
-                largeScreen: "full",
-              }}
-            />
-          </div>
-        </div>
-      </div>
       <div className="sm:flex hidden">
         <ConnectButton
           chainStatus="none"
@@ -58,6 +34,32 @@ const Navbar = () => {
             largeScreen: "full",
           }}
         />
+      </div>
+
+      <div className="relative sm:hidden">
+        <button onClick={handleMenuToggle}>
+          <Image
+            src={menu}
+            alt="menu"
+            width={24}
+            height={24}
+            className="mx-4"
+          />
+        </button>
+        {toggleDrawer && (
+          <div className="absolute top-[54px] right-0 bg-white rounded-md w-[100vw] m-auto">
+            <div className="block w-full px-4 py-2 text-sm text-gray-700 ml-[30vw]">
+              <ConnectButton
+                chainStatus="none"
+                showBalance={false}
+                accountStatus={{
+                  smallScreen: "avatar",
+                  largeScreen: "full",
+                }}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
